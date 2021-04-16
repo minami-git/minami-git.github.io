@@ -8,6 +8,11 @@
 
 <body>
     <div id="app">
+        {{message}}
+
+        {{lang === 'ja' ? message_ja : message_en}}
+
+        <input type="text" v-bind:value="message">
         <ul>
             <li v-for="item in list">{{item.name}} {{item.price}}円</li>
         </ul>
@@ -17,6 +22,10 @@
         var app = new Vue({
             el: '#app',
             data: {
+                message_en: 'Hello!',
+                message_ja: 'こんにちは！!',
+                lang: 'ja',
+                message: 'こんにちは！',
                 list: [
                     { name: '商品A', price: 1000 },
                     { name: '商品B', price: 2000 },
