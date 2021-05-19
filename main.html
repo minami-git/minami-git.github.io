@@ -4,10 +4,59 @@
 <head>
     <meta charset="utf-8">
     <title>サンプル</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
     <div id="app">
+
+        <p v-bind:style="{fontSize: pSize}">文字サイズは{{pSize}}です。</p>
+
+        <p v-bind:class="{capitalize: isCapital}">hello vue!</p>
+
+        {{price}}円　<span v-if="price < 1000">セール実施中！</span>
+
+        <span v-if="stock >= 1">残り{{stock}}個です。</span>
+        <span v-else>在庫切れです。</span>
+
+        {{price}}円 <span v-show="price < 1000">セール実施中！</span>
+
+        lesson10 => [{{price | unit}}] {{price | number_format | unit}}
+
+        調べたい年 : <input type="text" v-model="year"><br>
+        {{year}}年は{{isUrudoshi ? 'うるう年です':'うるう年ではありません'}}
+
+
+        <div v-show="tabira">
+            <p>now1: "{{now1()}}"</p>
+            <p>now2: "{{now2}}'</p>
+        </div>
+
+
+        <template v-if="stock >= 1">
+            <span clss="num">残り{{stock}}個</span>
+            <button class="btn" v-on:click="onDeleteItem">削除</button>
+        </template>
+        <template v-else>在庫切れ</template>
+
+
+
+
+        <table border="1">
+            <tr>
+                <th>商品コード</th>
+                <th>商品名</th>
+            </tr>
+            　　<tr v-for="item in products" v-bind:key="item.code">　　　
+
+                <td>{{item.code}}</td>
+                <td>{{item.name}}</td>
+            </tr>
+        </table>
+
+
+
         {{message}}
 
         {{lang === 'ja' ? message_ja : message_en}}
@@ -17,11 +66,32 @@
             <li v-for="item in list">{{item.name}} {{item.price}}円</li>
         </ul>
     </div>
+
+
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
+
+
+        Vue.filter('number_format', function (val) {
+            return val.toLocaleString();
+        });
+
         var app = new Vue({
             el: '#app',
             data: {
+                show: true,
+                tabira: false,
+                year: (new Date()).getFullYear(),
+                stock: 10,
+                stock: 10,
+                price: 1000,
+                pSize: '40px',
+                isCapital: true,
+                products: [
+                    { code: 'A01', name: 'プロダクトA' },
+                    { code: 'B01', name: 'プロダクトB' },
+                    { code: 'C01', name: 'プロダクトC' },
+                ],
                 message_en: 'Hello!',
                 message_ja: 'こんにちは！!',
                 lang: 'ja',
@@ -31,8 +101,38 @@
                     { name: '商品B', price: 2000 },
                     { name: '商品C', price: 980 }
                 ]
-            }
+            },
+            methods: {
+                now1: function () {
+                    return (new Date()).toLocaleString();
+                },
+                onDeleteItem: function () {
+                    this.stock = this.stock - 2;
+                }
+            },
+            computed: {
+                now2: function () {
+                    return (new Date()).toLocaleString();
+                },
+                isUrudoshi: function () {
+                    if ((this.year % 4 == 0) && (this.year % 100 != 0) ||
+                        (this.year % 400 == 0)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            },
+            filters: {
+                number_format: function (val) {
+                    return val.toLocaleString();
+                },
+                unit: function (val) {
+                    return val + '円';
+                }
+            },
         });
+
 
     </script>
 </body>

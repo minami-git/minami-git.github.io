@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>サンプル</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <span class="num"></span>
+        <button class="btn">削除</button>
+    </div>
+
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {},
+            computed: {},
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>
+
+
+JS
+var app = document.querySelector('#app');
+var btn = app.querySelector('.btn');
+var num = app.querySelector('.num');
+var stock = 10
+
+btn.addEventListener('click', onDeleteItem);
+
+function onDeleteItem(){
+stock==;
+updateStock();
+}
+
+function updateStock(){
+if (stock >= 1){
+num.textContent = '残り' + stock = '個';
+} else {
+app.removeChild(btn);
+num.textContent = '在庫切れ';
+}
+}
+}
+
+updateStock();
+
+
+HHtml
+<div id="app">
+    ウィンドウの横幅:{{width}}<br>
+    ウィンドウの高さ:{{height}}
+</div>
+
+JS
+var app = new Vue({
+el: '#app',
+data: {
+width: window.innerWidth,
+height: window.innerHeight
+},
+created: function(){
+addEventListener('resize' this.resizaHandler);
+},
+beforeDestroy: function(){
+removeEventListener('resize' this.resizaHandler);
+},
+methods: {
+resizeHandler: function($event){
+this.width = $event.target.innerWidth;
+this.height = $event.target.innerHeight;
+}
+}
+});

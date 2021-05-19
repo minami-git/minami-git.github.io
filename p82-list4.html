@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>サンプル</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <p>マウスカーソルの位置:{{point.x}}, {{point.y}}</p>
+    </div>
+
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                point: { x: 0, y: 0 }
+            },
+            created: function () {
+            },
+            beeforeDestroy: function () {
+                removeEventListener('mousemove', this.mousemoveHandler);
+            },
+            methods: {
+                mousemoveHandler: function ($event) {
+                    this.point.x = $event.clientx;
+                    this.point.y = $event.clienty;
+                }
+            }
+
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
