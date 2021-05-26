@@ -11,11 +11,6 @@
 <body>
 
     <div id="app">
-        <template v-if="stock >= 1">
-            <span class="num">残り{{stock}}個</span>
-            <button class="btn" v-on:click="onDeleteItem">削除</button>
-        </template>
-        {{message}}
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -31,14 +26,22 @@
                     this.stock--;
                 }
             },
-            watch: {
-                stock: function (newStock, oldstock) {
-                    if (newStock == 0) {
-                        this.message = '売り切れ'
+            computed: {
+                statusMessage: function () {
+                    if (this.stock == 0) {
+                        return '売り切れ';
                     }
+                    return '';
                 }
             },
+            watch: {
+                statusMessage: function () {
+                    console.log('商品のステータスが変化しました。');
+
+                }
+            }
         });
+
 
 
     </script>

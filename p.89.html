@@ -11,14 +11,22 @@
 <body>
 
     <div id="app">
+        <input type="text" v-on:input="yearInputhandler" v-bind:value="year">
+        <p>{{year}}</p>
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
-            data: {},
-            methods: {},
+            data: {
+                year: (new Data()).getFullYear()
+            },
+            methods: {
+                yearInputHandler: function ($event) {
+                    this.year = $event.target.value;
+                }
+            },
             computed: {},
         });
 

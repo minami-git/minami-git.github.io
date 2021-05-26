@@ -11,13 +11,17 @@
 <body>
 
     <div id="app">
+        <textarea v-model="プロパティ名"></textarea>
+        <pre>入力内容: {{message}}</pre>
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
-            data: {},
+            data: {
+                message: 'これは一方通行のバインドです。'
+            },
             methods: {},
             computed: {},
         });
