@@ -11,10 +11,9 @@
 <body>
 
     <div id="app">
-        <label> ケーキはお好きですか？:{{ answer }}</p>
-            <input id="cake" type="checkbox" v-model="answer">
-            true-value=" はい " false-vcalue" いいえ ">
-            label nfor="cake">チェックしてください</label>
+        <label> ケーキはお好きですか？:{{ answer }}</label>
+        <input id="cake" type="checkbox" v-model="answer" true-value="はい" false-value="いいえ">
+        <label nfor="cake"> チェックしてください</label>
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -22,7 +21,7 @@
         var app = new Vue({
             el: '#app',
             data: {
-                answer: 'はい'
+                answer: 'いいえ'
             },
             methods: {},
             computed: {},
