@@ -11,7 +11,7 @@
 <body>
 
     <div id="app">
-        <input type="text" v-on:input="yearInputhandler" v-bind:value="year">
+        <input type="text" v-on:input="yearInputHandler" v-bind:value="year">
         <p>{{year}}</p>
     </div>
 
@@ -20,7 +20,7 @@
         var app = new Vue({
             el: '#app',
             data: {
-                year: (new Data()).getFullYear()
+                year: (new Date()).getFullYear()
             },
             methods: {
                 yearInputHandler: function ($event) {
