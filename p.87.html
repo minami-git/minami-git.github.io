@@ -11,6 +11,12 @@
 <body>
 
     <div id="app">
+        <template v-if="stock >= 1">
+            <span class="num">残り{{stock}}個</span>
+            <button class="btn" v-on:click="onDeleteItem">削除</button>
+        </template>
+        {{statusMessage}}<br />
+        {{notification}}
     </div>
 
     <script src="https://jp.vuejs.org/js/vue.js"></script>
@@ -19,6 +25,7 @@
             el: '#app',
             data: {
                 message: '',
+                notification: '',
                 stock: 10
             },
             methods: {
@@ -36,8 +43,7 @@
             },
             watch: {
                 statusMessage: function () {
-                    console.log('商品のステータスが変化しました。');
-
+                    this.notification = '商品のステータスが変化しました。';
                 }
             }
         });
