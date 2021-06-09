@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>サンプル</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+    <div id="app">
+        <button v-on:click="show = !show">表示を切り替える</button>
+        <transition name="zoom" enter-active-class="animated zoomIn" leave-active-class="animated zoomOut">
+            <p v-if="show">
+                吾輩は猫である。名前はまだ無い。<br>
+                どこで生れた火遁と見当がつかぬ。<br>
+                何でも薄暗いじめじめとした所でニャーニャー泣いていたことだけは記憶している。
+            </p>
+        </transition>
+
+    </div>
+
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                show: true
+            },
+            methods: {},
+            computed: {},
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

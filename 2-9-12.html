@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>サンプル</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <fieldset>
+            <legend>あなたの好きな色は？</legend>
+            <input type="color" v-model="color"> {{color}}<br>
+            赤:<input type="range" v-model.number="red" min="0" max="255">
+            {{red}}<br>
+            緑:<input type="range" v-model.number="green" min="0" max="255">
+            {{green}}<br>
+            青:<input type="range" v-model.number="blue" min="0" max="255">
+            {{blue}}<br>
+        </fieldset>
+    </div>
+
+    <script src="https://jp.vuejs.org/js/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                color: '#000000',
+                red: 0,
+                blue: 0,
+                green: 0,
+            },
+            methods: {},
+            computed: {
+                colorElement: function () {
+                    return [this.red, this.green, this.blue];
+                }
+            },
+            watch: {
+                colorElement: function (newRGB, oldRGB) {
+                    var r = ('00' + newRGB[0].toString(16).toUpperCase()).slice(-2);
+                    var g = ('00' + newRGB[1].toString(16).toUpperCase()).slice(-2);
+                    var b = ('00' + newRGB[2].toString(16).toUpperCase()).slice(-2);
+                    this.color = '#' + r + g + b;
+                },
+                color: function (newColor, oldColor) {
+                    this.red = parseInt(newColor.substr(1, 2), 16);
+                    this.green = parseInt(newColor.substr(3, 2), 16);
+                    this.blue = parseInt(newColor.substr(5, 2), 16);
+                }
+            }
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
