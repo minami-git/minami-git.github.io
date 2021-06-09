@@ -35,16 +35,16 @@
                     min_date: null
                 },
                 created: function () {
-                    ver dt = new Date();
-                    dt.setdate(dt.getDate() + 1);
+                    var dt = new Date();
+                    dt.setDate(dt.getDate() + 1);
                     this.arrival_date = this.formatDate(dt);
                     this.min_date = this.arrival_date;
                 },
                 methods: {
-                    formaDate: function (dt) {
+                    formatDate: function (dt) {
                         var y = dt.getFullYear();
                         var m = ('00' + (dt.getMonth() + 1)).slice(-2);
-                        var d = ('00' + dt.getDate().slice(-2));
+                        var d = ('00' + dt.getDate()).slice(-2);
                         var result = y + '-' + m + '-' + d;
                         return result;
                     }
@@ -54,6 +54,9 @@
 
 
         </script>
+        <h1>トラブルシューティング</h1>
+
+        F12 でコンソールログにエラーが表示されていないかどうか確認する。
 
 
     </body>

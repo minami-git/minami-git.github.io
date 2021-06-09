@@ -27,6 +27,10 @@ body {
 }
 
 .search .sort {
+  display: inline-block;
+}
+
+.list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -55,7 +59,7 @@ body {
 
 .item .status {
   position: absolute;
-  border-radius: 50px;
+  border-radius: 50%;
   width: 4em;
   height: 4em;
   font-size: 12px;
