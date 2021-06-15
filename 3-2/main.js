@@ -11,7 +11,7 @@ var nodeItemsOrg = nodeApp.querySelectorAll(".item");
 
 function onCheckChanged(event) {
   var nodeItems = nodeApp.querySelectorAll(".item");
-  var nodeCount = nodeApp.querySelectorAll(".count");
+  var nodeCount = nodeApp.querySelector(".count");
   var count = nodeItems.length;
   for (var i = 0; i < nodeItems.length; i++) {
     showNode(nodeItems[i]);
@@ -26,13 +26,13 @@ function onCheckChanged(event) {
   }
   if (nodeCheckbox[1].checked) {
     for (var i = 0; i < nodeItems.length; i++) {
-      if (!isSaleItem(nodeItems[i])) {
+      if (!isDelvFreeItem(nodeItems[i])) {
         hideNode(nodeItems[i]);
         count--;
       }
     }
   }
-  nodeCount.textcontent = count + "件";
+  nodeCount.textContent = count + "件";
 }
 
 function onOrderChanged(event) {
@@ -42,11 +42,11 @@ function onOrderChanged(event) {
   for (var i = 0; i < nodeItems.length; i++) {
     products.push(nodeItems[i]);
   }
-  while (nodeList.firstchild) {
-    nodeList.removeChild(nodeList.filstChild);
+  while (nodeList.firstChild) {
+    nodeList.removeChild(nodeList.firstChild);
   }
   if (event.target.value == "1") {
-    for (var i = 0; i < nodeItems.length; i++) {
+    for (var i = 0; i < products.length; i++) {
       nodeList.appendChild(nodeItemsOrg[i]);
     }
   } else if (event.target.value == "2") {
@@ -63,18 +63,18 @@ function onOrderChanged(event) {
       nodeList.appendChild(products[i]);
     }
   }
-  function isSaleItem(nodeItem) {
-    var node = nodeItem.querySelector(".status");
-    return node && node.textContent == "SALE";
-  }
-  function isDelvFreeItem(nodeItem) {
-    var node = nodeItem.querySelector(".shipping-fee");
-    return node && node.textContent == "送料無料";
-  }
-  function hideNode(node) {
-    node.setAttribute("style", "display:none;");
-  }
-  function showNode(node) {
-    node.removeAttribute("style");
-  }
+}
+function isSaleItem(nodeItem) {
+  var node = nodeItem.querySelector(".status");
+  return node && node.textContent == "SALE";
+}
+function isDelvFreeItem(nodeItem) {
+  var node = nodeItem.querySelector(".shipping-fee");
+  return node && node.textContent == "送料無料";
+}
+function hideNode(node) {
+  node.setAttribute("style", "display:none;");
+}
+function showNode(node) {
+  node.removeAttribute("style");
 }
