@@ -18,10 +18,11 @@
                 <div class="result">
                     検索結果　<span class="count">6件</span>
                 </div>
-                <div class="condition"> //3-5-1
+                <!-- 3-5-1 -->
+                <div class="condition">
                     <div class="target">
                         <label><input type="checkbox" v-model="showSaleItem">セール対象{{showSaleItem}}</label>
-                        <label><input type="checkbox" v-model="showdelvFree">送料無料((showDelvFree}}</label>
+                        <label><input type="checkbox" v-model="showDelvFree">送料無料{{showDelvFree}}</label>
                     </div>
 
                     <div class="sort">
@@ -42,11 +43,11 @@
                         </template>
                         <img v-bind:src="product.image" alt="">
                         <figcaption>{{ product.name }}</figcaption>
-                        //3-4-7
+                        <!-- 3-4-7 -->
                         <figcaption v-html="product.name"></figcaption>
                     </figure>
-
-                    <div class="detail"> //3-4-6
+                    <!-- 3-4-6 -->
+                    <div class="detail">
                         <div class="price"><span>{{ product.price | number_format }}</span>円（税込）</div>
                         <template v-if="product.delv == 0">
                             <div class="shipping-fee none">送料無料</div>

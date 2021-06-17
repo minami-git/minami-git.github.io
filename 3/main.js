@@ -1,6 +1,6 @@
 //list3-4-5
 Vue.filter('number_format', function (val) {
-  return val.toLocalString();
+  return val.toLocaleString();
 });
 
 var app = new Vue({
