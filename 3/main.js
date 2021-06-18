@@ -1,6 +1,6 @@
 //list3-4-5
 Vue.filter('number_format', function (val) {
-  return val.toLocalString();
+  return val.toLocaleString();
 });
 
 var app = new Vue({
@@ -63,7 +63,33 @@ var app = new Vue({
   //3-5-3
   watch: {
     showSaleItem: function (newVal, oldVal) {
-      console.log('showsaleItem');
+      console.log('showSaleItemウォッチャが呼び出されました。');
+    },
+    showDelvItem: function (newVal, oldVal) {
+      console.log('showDelvItemウォッチャが呼び出されました。');
     },
   },
-});
+
+  computed: {
+    filteredList: function () {
+      var newList = [];
+      for (var i = 0; i < this.products.length; i++) {
+        var isShow = true;
+        if (this.showSaleItem && !this.products[i].isSale) {
+          isShow = false;
+        }
+        if (this.showDelvFree && !this.products[i].delv > 0) {
+          isShow = false;
+        }
+        if (isShow) {
+          newList.push(this.products[i]);
+        }
+      }
+      return newList;
+    }
+  },
+  count: function () {
+    return this.filteredList.length;
+  }
+}
+  
