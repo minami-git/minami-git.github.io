@@ -10,7 +10,6 @@ var app = new Vue({
 
     //list3-3-3
 
-    count: 0,
     showSaleItem: false,
     showDelvFree: false,
     sortOrder: 1,
@@ -33,7 +32,7 @@ var app = new Vue({
         name: 'Gabriel<br>スマホケース',
         price: 1580,
         image: 'images/03.jpg',
-        delv: 0,
+        delv: 240,
         isSale: true,
       },
       {
@@ -78,7 +77,7 @@ var app = new Vue({
         if (this.showSaleItem && !this.products[i].isSale) {
           isShow = false;
         }
-        if (this.showDelvFree && !this.products[i].delv > 0) {
+        if (this.showDelvFree && this.products[i].delv > 0) {
           isShow = false;
         }
         if (isShow) {
@@ -86,10 +85,9 @@ var app = new Vue({
         }
       }
       return newList;
-    }
+    },
+    count: function () {
+      return this.filteredList.length;
+    },
   },
-  count: function () {
-    return this.filteredList.length;
-  }
-}
-  
+});
